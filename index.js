@@ -1,7 +1,7 @@
 const url = require('url');
-const { MONGODB_URI } = process.env;
-if (MONGODB_URI) {
-  const connectUrl = url.parse(MONGODB_URI);
+const { MONGO_URI, MONGODB_URI } = process.env;
+if (MONGO_URI || MONGODB_URI) {
+  const connectUrl = url.parse(MONGO_URI || MONGODB_URI);
   const [user, password] = connectUrl.auth.split(':');
   process.env.MONGO_HOST = process.env.MONGO_HOST || connectUrl.hostname;
   process.env.MONGO_PORT = process.env.MONGO_PORT || connectUrl.port;
